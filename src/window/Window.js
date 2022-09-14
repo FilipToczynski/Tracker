@@ -2,7 +2,7 @@
 
 function Window() {
     return (
-        <div></div>
+        <div><div></div></div>
     )
 }
 
