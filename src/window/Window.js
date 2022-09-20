@@ -1,3 +1,4 @@
+import Sidebar from "../Sidebar/Sidebar";
 import styles from "./window.module.css";
 
 function Window() {
@@ -5,12 +6,11 @@ function Window() {
     <div className={styles.view}>
       <div className={styles.container}>
         <div className={styles.options}>
-            <div>project</div> 
-            <div>projects add+</div> 
+            <Sidebar />
         </div>
         <div className={styles.main}>
-            <div> add new one here</div>
-            <div> list of tasks</div>
+            <div>add new one here</div>
+            <div>list of tasks</div>
         </div>
       </div>
     </div>

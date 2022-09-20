@@ -1,0 +1,50 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 80vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--grey);
+  height: 3rem;
+  width: 8rem;
+  border-radius: 3px;
+  box-shadow: -0.1rem 0 var(--light-blue);
+  font-family: "Montserrat", "Lato", italic;
+  font-style: italic;
+}
+
+.module {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  border-radius: 3px;
+  box-shadow: -0.1rem 0 var(--purple);
+  background-color: var(--grey);
+  width: 12rem;
+}
+.list {
+  list-style: none;
+}
+
+.item {
+  background-color: var(--grey);
+  width: 8rem;
+  padding: 0.2rem;
+  margin-top: 0.1rem;
+  border-radius: 3px;
+  box-shadow: -0.1rem 0 var(--blue);
+}
+
+.item:hover {
+  box-shadow: -0.2rem 0 var(--blue);
+  transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  cursor: pointer;
+}
