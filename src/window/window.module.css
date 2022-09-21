@@ -1,6 +1,7 @@
 .view {
   background-color: var(--main-dark);
   color: #fff;
+  border-radius: 4px;
 }
 
 .container {
@@ -11,8 +12,8 @@
   grid-auto-flow: row;
   height: 80vh;
   width: 80vw;
+  overflow: hidden;
 }
-
 .options {
   grid-area: 1 / 1 / 2 / 2;
   display: flex;
