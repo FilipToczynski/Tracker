@@ -16,8 +16,12 @@ function Sidebar() {
     if (projectExists) {
       window.alert("project already exists");
     } else {
+
       setProjectsList([...projectsList, inputRef.current.value]);
-      localStorage.setItem("allProjects", JSON.stringify([...projectsList, inputRef.current.value]));
+      localStorage.setItem(
+        "allProjects",
+        JSON.stringify([...projectsList, inputRef.current.value])
+      );
     }
   }
 
