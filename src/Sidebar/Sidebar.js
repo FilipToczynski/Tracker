@@ -1,22 +1,42 @@
 import { IconContext } from "react-icons";
 import styles from "./Sidebar.module.css";
 import { GrFormAdd } from "react-icons/gr";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Sidebar() {
   const projectArray = ["dummy"];
   const [projectsList, setProjectsList] = useState(projectArray);
 
   const inputRef = useRef(null);
+  const [input, setInput] = useState("");
 
   function addTask() {
-    setProjectsList([inputRef.current.value, ...projectsList]);
-    projectArray.push(inputRef.current.value)
+    const projectExists = projectsList.includes(inputRef.current.value);
+
+    if (projectExists) {
+      window.alert("project already exists");
+    } else {
+      setProjectsList([...projectsList, inputRef.current.value]);
+      localStorage.setItem("allProjects", JSON.stringify([...projectsList, inputRef.current.value]));
+    }
   }
-  
-  // add current time to local storage
+
+  //  to reset the list
+  // localStorage.setItem('allProjects', JSON.stringify(projectsList));
+
+  const pullProjectsList = () => {
+    const updatedList = JSON.parse(localStorage.getItem("allProjects"));
+
+    setProjectsList([...updatedList]);
+  };
+
+  useEffect(() => {
+    pullProjectsList();
+  }, [inputRef]);
+
+  // add current time to lrerrl storage
   // current date
-  // name 
+  // name
   // time spent on a task in total
   // all in one object
 
@@ -30,8 +50,10 @@ function Sidebar() {
   //   same as above
   // }
   // }
-  
-  
+
+  // to do
+  // dont allow to make projects wit the same name
+
   return (
     <div className={styles.sidebar}>
       <h4 className={styles.header}>very project much work</h4>
@@ -42,8 +64,14 @@ function Sidebar() {
             placeholder="project name"
             className={styles.input}
             ref={inputRef}
+            onChange={setInput}
+            required
           ></input>
-          <button className={styles.btn} onClick={addTask}>
+          <button
+            className={styles.btn}
+            onClick={addTask}
+            disabled={input.length === 0 ? true : false}
+          >
             Add
             <IconContext.Provider value={{ color: "blue" }}>
               <div>

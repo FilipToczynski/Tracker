@@ -81,7 +81,12 @@
   background: rgb(149, 149, 149);
   border-radius: 20px;
 }
-
+.err {
+  z-index: 11;
+  height: 2rem;
+  width: 8rem;
+  background-color: red;
+}
 .item {
   background-color: var(--grey);
   width: 12rem;
