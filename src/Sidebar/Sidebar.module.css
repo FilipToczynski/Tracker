@@ -61,9 +61,23 @@
   width: 12rem;
 }
 
+
+
+.modal {
+  height: 4rem;
+  width: 100%;
+  background-color: var(--grey);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
 .list {
   list-style: none;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 18rem;
   height: 10rem;
 }
@@ -95,8 +109,14 @@
   margin-left: 3rem;  
   border-radius: 3px;
   box-shadow: -0.1rem 0 var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+.d {
+  padding-left: .5rem;
+}
 .item:hover {
   box-shadow: -0.2rem 0 var(--blue);
   transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);

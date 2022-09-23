@@ -82,7 +82,7 @@ input {
 }
 
 .bottom {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
