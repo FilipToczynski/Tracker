@@ -30,7 +30,36 @@
   width: 100%;
   grid-area: 1 / 2 / 2 / 3;
 }
-
+.data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80%;
+  width: 80%;
+  border-radius: 3px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  background-color: var(--grey);
+  justify-content: space-around;
+  height: 4rem;
+  width: 80%;
+  border-radius: 3px;
+}
+.splitRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.splitRow * {
+  padding: .2rem;
+}
+.inData {
+  display: flex;
+  justify-content: space-between;
+}
 .add {
   height: 100%;
   width: 100%;

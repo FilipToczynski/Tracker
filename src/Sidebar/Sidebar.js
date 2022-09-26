@@ -4,27 +4,29 @@ import { useEffect, useRef, useState } from "react";
 import { GrFormAdd } from "react-icons/gr";
 import { BsTrash } from "react-icons/bs";
 
-function Sidebar({ setName }) {
+function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
   const projectArray = ["example"];
   const [projectsList, setProjectsList] = useState(projectArray);
 
   const inputRef = useRef(null);
   const [input, setInput] = useState("");
   const [modal, setModal] = useState(false);
+  const [projectDate, setProjectDate] = useState("");
+  const [projectTime, setProjectTime] = useState("");
   const [projectName, setProjectName] = useState("project");
 
   function addProject() {
     const projectExists = projectsList.includes(inputRef.current.value);
     let name = inputRef.current.value;
     let dateToday = new Date();
-    let date =
+    let dateProject =
       dateToday.getFullYear() +
       "-" +
       (dateToday.getMonth() + 1) +
       "-" +
       dateToday.getDate();
     let timeToday = new Date();
-    let time =
+    let timeProject =
       timeToday.getHours() +
       ":" +
       timeToday.getMinutes() +
@@ -44,8 +46,11 @@ function Sidebar({ setName }) {
         `${name}`,
         JSON.stringify({
           name: name,
-          date: date,
-          time: time,
+          dateProject: dateProject,
+          timeProject: timeProject,
+          taskList: [{ color: "red" }, { color: "bl" }],
+          timeTotal: 0,
+          dateTask: "",
         })
       );
     }
@@ -53,7 +58,7 @@ function Sidebar({ setName }) {
 
   //  to reset the list
   // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('0', JSON.stringify({}));
+  // localStorage.removeItem('bbb', JSON.stringify({}));
   // localStorage.removeItem('3', JSON.stringify({}));
 
   const pullProjectsList = () => {
@@ -65,20 +70,46 @@ function Sidebar({ setName }) {
   useEffect(() => {
     pullProjectsList();
     setName(projectName);
-    setProjectName(projectName);
-  }, [inputRef, setName, projectName]);
+    setDate(projectDate);
+    setTime(projectTime);
+  }, [
+    inputRef,
+    setName,
+    projectName,
+    projectDate,
+    projectTime,
+    setDate,
+    setTime,
+  ]);
 
   const toggleModal = () => {
     setModal(!modal);
-  }
+  };
 
   const deleteProject = () => {
     const updatedList = JSON.parse(localStorage.getItem("allProjects"));
+    const indx = projectsList.indexOf(projectName);
     localStorage.removeItem(projectName, JSON.stringify({}));
-    updatedList.splice(projectName, 1);
+    updatedList.splice(indx, 1);
     localStorage.setItem("allProjects", JSON.stringify([...updatedList]));
     setProjectsList([...updatedList]);
     toggleModal();
+  };
+
+  const projectData = (project) => {
+    const pj = JSON.parse(localStorage.getItem(project));
+    const pjDate = pj.dateProject;
+    const pjTime = pj.timeProject;
+    const pjTasks = pj.taskList.length;
+    const pjTimeSpent = pj.timeTotal;
+    setProjectName(project);
+    setProjectDate(pjDate);
+    setDate(pjDate);
+    setProjectTime(pjTime);
+    setName(project);
+    setTime(pjTime);
+    setTasks(pjTasks);
+    setTimeSpent(pjTimeSpent);
   };
 
   console.log(projectName);
@@ -126,8 +157,7 @@ function Sidebar({ setName }) {
               key={index}
               className={styles.item}
               onClick={() => {
-                setName(project);
-                setProjectName(project);
+                projectData(project);
               }}
             >
               {project}

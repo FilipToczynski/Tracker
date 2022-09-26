@@ -6,11 +6,15 @@ import { useState } from "react";
 function App() {
 
   const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [timeSpent, setTimeSpent] = useState('');
+  const [tasks, setTasks] = useState('');
   return (
     <div className={styles.view}>
       <div className={styles.container}>
-        <Sidebar setName={setName}/>
-        <Window indx={name}/>
+        <Sidebar setName={setName} setDate={setDate} setTime={setTime} setTasks={setTasks} setTimeSpent={setTimeSpent}/>
+        <Window name={name} date={date} time={time} tasks={tasks} timeSpent={timeSpent}/>
       </div>
     </div>
   );
