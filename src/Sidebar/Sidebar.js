@@ -4,22 +4,32 @@ import { useEffect, useRef, useState } from "react";
 import { GrFormAdd } from "react-icons/gr";
 import { BsTrash } from "react-icons/bs";
 
-function Sidebar() {
-  const projectArray = ["dummy"];
+function Sidebar({ setName }) {
+  const projectArray = ["example"];
   const [projectsList, setProjectsList] = useState(projectArray);
 
   const inputRef = useRef(null);
   const [input, setInput] = useState("");
   const [modal, setModal] = useState(false);
+  const [projectName, setProjectName] = useState("project");
 
   function addProject() {
     const projectExists = projectsList.includes(inputRef.current.value);
-    let lastIndex = projectsList.length - 1;
     let name = inputRef.current.value;
     let dateToday = new Date();
-    let date = dateToday.getFullYear() +"-" +(dateToday.getMonth() + 1) +"-" +dateToday.getDate();
+    let date =
+      dateToday.getFullYear() +
+      "-" +
+      (dateToday.getMonth() + 1) +
+      "-" +
+      dateToday.getDate();
     let timeToday = new Date();
-    let time =timeToday.getHours() +":" +timeToday.getMinutes() +":" +timeToday.getSeconds();
+    let time =
+      timeToday.getHours() +
+      ":" +
+      timeToday.getMinutes() +
+      ":" +
+      timeToday.getSeconds();
 
     if (projectExists) {
       window.alert("project already exists");
@@ -31,7 +41,7 @@ function Sidebar() {
       );
 
       localStorage.setItem(
-        `${lastIndex + 1}`,
+        `${name}`,
         JSON.stringify({
           name: name,
           date: date,
@@ -43,51 +53,38 @@ function Sidebar() {
 
   //  to reset the list
   // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('2', JSON.stringify({}));
+  // localStorage.removeItem('0', JSON.stringify({}));
   // localStorage.removeItem('3', JSON.stringify({}));
 
-//   const pullProjectsList = () => {
-//     const updatedList = JSON.parse(localStorage.getItem("allProjects"));
+  const pullProjectsList = () => {
+    const updatedList = JSON.parse(localStorage.getItem("allProjects"));
 
-//     setProjectsList([...updatedList]);
-//   };
+    setProjectsList([...updatedList]);
+  };
 
-//   useEffect(() => {
-//     pullProjectsList();
-//   }, [inputRef]);
+  useEffect(() => {
+    pullProjectsList();
+    setName(projectName);
+    setProjectName(projectName);
+  }, [inputRef, setName, projectName]);
 
+  const toggleModal = () => {
+    setModal(!modal);
+  }
 
-// let indx;
-// const getId = (index) => {
-//   indx = index;
-//   console.log(indx);
-//   return indx;
-// };
+  const deleteProject = () => {
+    const updatedList = JSON.parse(localStorage.getItem("allProjects"));
+    localStorage.removeItem(projectName, JSON.stringify({}));
+    updatedList.splice(projectName, 1);
+    localStorage.setItem("allProjects", JSON.stringify([...updatedList]));
+    setProjectsList([...updatedList]);
+    toggleModal();
+  };
 
-//   const closeModal = () => {
-//     setModal(false);
-//   };
-
-//   const openModal = () => {
-//     // console.log(indx);
-//     setModal(true);
-//   };
-
-//     const deleteProject = () => {
-//       console.log(indx);
-//       localStorage.removeItem(indx, JSON.stringify({}));
-//       const updatedList = JSON.parse(localStorage.getItem("allProjects"));
-//       updatedList.splice(indx, 1);
-//       localStorage.setItem('allProjects', JSON.stringify([...updatedList]));
-//       setProjectsList([...updatedList]);
-//       closeModal();
-//     };
-
- 
-
+  console.log(projectName);
   return (
     <div className={styles.sidebar}>
-      <h4 className={styles.header}>very project much work</h4>
+      {!!projectName && <h4 className={styles.header}>{projectName}</h4>}
       <div>
         <h2 className={styles.heading}>Add project</h2>
         <div className={styles.module}>
@@ -118,8 +115,8 @@ function Sidebar() {
           <div className={styles.modal}>
             delete project?
             <div>
-              {/* <button onClick={deleteProject}>yes</button>
-              <button onClick={closeModal}>no</button> */}
+              <button onClick={deleteProject}>yes</button>
+              <button onClick={toggleModal}>no</button>
             </div>
           </div>
         )}
@@ -128,11 +125,13 @@ function Sidebar() {
             <li
               key={index}
               className={styles.item}
-              // onClick={() => getId(index)}
+              onClick={() => {
+                setName(project);
+                setProjectName(project);
+              }}
             >
               {project}
-              {/* onClick={openModal} */}
-              <span className={styles.delete}> 
+              <span className={styles.delete} onClick={toggleModal}>
                 <IconContext.Provider
                   value={{ color: "#f9f9f9", className: styles.d }}
                 >
