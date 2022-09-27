@@ -49,8 +49,6 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
           dateProject: dateProject,
           timeProject: timeProject,
           taskList: [{ color: "red" }, { color: "bl" }],
-          timeTotal: 0,
-          dateTask: "",
         })
       );
     }
