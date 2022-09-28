@@ -10,11 +10,12 @@ function App() {
   const [time, setTime] = useState('');
   const [timeSpent, setTimeSpent] = useState('');
   const [tasks, setTasks] = useState('');
+  const [listOfTasks, setListOfTasks] = useState('');
   return (
     <div className={styles.view}>
       <div className={styles.container}>
-        <Sidebar setName={setName} setDate={setDate} setTime={setTime} setTasks={setTasks} setTimeSpent={setTimeSpent}/>
-        <Window name={name} date={date} time={time} tasks={tasks} timeSpent={timeSpent}/>
+        <Sidebar setName={setName} setDate={setDate} setTime={setTime} setTasks={setTasks} setTimeSpent={setTimeSpent} listOfTasks={listOfTasks}/>
+        <Window name={name} date={date} time={time} tasks={tasks} timeSpent={timeSpent} setListOfTasks={setListOfTasks}/>
       </div>
     </div>
   );

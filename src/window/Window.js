@@ -5,22 +5,29 @@ import { AiFillCaretRight } from "react-icons/ai";
 import { BsFillStopFill } from "react-icons/bs";
 import styles from "./window.module.css";
 
-function Window({ name, date, time, tasks, timeSpent }) {
-  const tasksArray = [{ projectName: "red" }];
+function Window({ name, date, time, tasks, timeSpent, setListOfTasks }) {
+  const tasksArray = [];
   const [taskList, setTaskList] = useState(tasksArray);
-  const [nameTask, setTaskName] = useState('task');
- 
+  const [nameTask, setTaskName] = useState("task");
+  const [timer, setTimer] = useState(0);
+
   const inputRef = useRef(null);
 
   const pullTaskList = () => {
-    const updatedList = JSON.parse(localStorage.getItem(`${name}`));
-    console.log(updatedList);
-    // setTaskList([...updatedList]);
+    if (name) {
+      const updatedList = JSON.parse(localStorage.getItem(`${name}`)).taskList;
+      console.log(updatedList);
+      setTaskList([...updatedList]);
+    }
   };
   useEffect(() => {
+    setListOfTasks(taskList);
     setTaskName(inputRef.current.value);
+    if (name) {
+      console.log(name);
+    }
     pullTaskList();
-  }, [setTaskName])
+  }, [setTaskName, name]);
 
   const addTask = () => {
     let taskName = inputRef.current.value;
@@ -31,32 +38,49 @@ function Window({ name, date, time, tasks, timeSpent }) {
       (dateToday.getMonth() + 1) +
       "-" +
       dateToday.getDate();
-      let timeToday = new Date();
+    let timeToday = new Date();
     let timeTask =
       timeToday.getHours() +
       ":" +
-      timeToday.getMinutes() +
-      ":" +
-      timeToday.getSeconds();
+      timeToday.getMinutes();
     let x = {
       projectName: name,
       taskName: taskName,
       time: timeTask,
       date: dateTask,
       timeTotal: 0,
+    };
+
+    if (name) {
+      const neimae = JSON.parse(localStorage.getItem(`${name}`)).taskList;
+      neimae.push(x);
+      console.log(neimae);
+      setTaskList(neimae);
+      localStorage.setItem(
+        `${name}`,
+        JSON.stringify({
+          name: name,
+          dateProject: date,
+          timeProject: time,
+          taskList: neimae,
+          timer: timer,
+        })
+      );
     }
+  };
 
-    if (taskList) {
-      console.log([...taskList, x])
-    } else {
-      setTaskList([...taskList, x]);
-      // localStorage.setItem(
-      //   `${name.taskList}`,
-      //   JSON.stringify([...taskList, x])
-      // );
-
-      }
-  }
+  let dateToday = new Date();
+    let dateTask =
+      dateToday.getFullYear() +
+      "-" +
+      (dateToday.getMonth() + 1) +
+      "-" +
+      dateToday.getDate();
+    let timeToday = new Date();
+    let timeTask =
+      timeToday.getHours() +
+      " : " +
+      timeToday.getMinutes();
   return (
     <div className={styles.main}>
       <div className={styles.data}>
@@ -73,11 +97,11 @@ function Window({ name, date, time, tasks, timeSpent }) {
           </div>
           <div className={styles.splitRow}>
             <div className={styles.inData}>
-              <h4>number of tasks</h4>
-              <p>{tasks}</p>
+              <h4>tasks</h4>
+              <p>#{tasks}</p>
             </div>
             <div className={styles.inData}>
-              <h4>time spent total</h4>
+              <h4>time total</h4>
               <p>{timeSpent}</p>
             </div>
           </div>
@@ -88,9 +112,9 @@ function Window({ name, date, time, tasks, timeSpent }) {
         <div className={styles.panel}>
           <input placeholder="task name" ref={inputRef}></input>
           <div>{name}</div>
-          <div>time</div>
-          <div>date</div>
-          <div>timer</div>
+          <div>{timeTask}</div>
+          <div>{dateTask}</div>
+          <div>0</div>
           <button className={styles.button} onClick={addTask}>
             <IconContext.Provider value={{ color: "#fff", size: "2rem" }}>
               <div>
@@ -102,25 +126,31 @@ function Window({ name, date, time, tasks, timeSpent }) {
       </div>
       <div className={styles.list}>
         <div className={styles.top}>
-          <h2 className={styles.heading}>list of task</h2>  
+          <h2 className={styles.heading}>list of task</h2>
         </div>
         <ul className={styles.bottom}>
-          {taskList.map((task, index) => {
-            const s = task.taskName;
+          {taskList && taskList.map((task, index) => {
+            let pjName = task.projectName;
+            let nameOfTask = task.taskName;
+            let timeTask = task.time;
+            let dateTask = task.date;
+            let taskTimer = task.timer;
             return (
               <li className={styles.item} key={index}>
-                <span>{nameTask}</span>
-                <span>{s}</span>
-                <span>time</span>
-                <span>date</span>
-                <span>timer</span>
-                {/* <button className={styles.button}>
+                <span>{nameOfTask}</span>
+                <span>{pjName}</span>
+                <span>{timeTask}</span>
+                <span>{dateTask}</span>
+                <span>{timer}</span>
+                <span>
+
+                <button className={styles.button}>
                   <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
                     <div>
                       <AiFillCaretRight />
                     </div>
                   </IconContext.Provider>
-                </button> */}
+                </button>
                 <button className={styles.button}>
                   <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
                     <div>
@@ -128,6 +158,14 @@ function Window({ name, date, time, tasks, timeSpent }) {
                     </div>
                   </IconContext.Provider>
                 </button>
+                <button className={styles.button}>
+                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
+                    <div>
+                      <BsFillStopFill />
+                    </div>
+                  </IconContext.Provider>
+                </button>
+                </span>
               </li>
             );
           })}
