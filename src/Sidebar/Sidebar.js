@@ -1,5 +1,5 @@
 import { IconContext } from "react-icons";
-import styles from "./Sidebar.module.css";
+import "./sidebar.scss";
 import { useEffect, useRef, useState } from "react";
 import { GrFormAdd } from "react-icons/gr";
 import { BsTrash } from "react-icons/bs";
@@ -125,20 +125,20 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
 
   console.log(projectName);
   return (
-    <div className={styles.sidebar}>
-      <h4 className={styles.header}>{projectName}</h4>
+    <div className='sidebar'>
+      <h2 className='sidebar__title'>{projectName}</h2>
       <div>
-        <h2 className={styles.heading}>Add project</h2>
-        <div className={styles.module}>
+        <h2 className='sidebar__heading'>Add project</h2>
+        <div className='sidebar__module'>
           <input
             placeholder="project name"
-            className={styles.input}
+            className='sidebar__input'
             ref={inputRef}
             onChange={setInput}
             required
           ></input>
           <button
-            className={styles.btn}
+            className='sidebar__btn'
             onClick={addProject}
             disabled={input.length === 0 ? true : false}
           >
@@ -152,9 +152,9 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
         </div>
       </div>
       <div>
-        <h2 className={styles.heading}>Projects list</h2>
+        <h2 className='sidebar__heading'>Projects list</h2>
         {modal && (
-          <div className={styles.modal}>
+          <div className='sidebar__modal'>
             delete project?
             <div>
               <button onClick={deleteProject}>yes</button>
@@ -162,20 +162,20 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
             </div>
           </div>
         )}
-        <ul className={styles.list}>
+        <ul className='sidebar__list'>
           {projectsList.map((project, index) => (
             <li
               key={index}
-              className={styles.item}
+              className='sidebar__item'
               onClick={() => {
                 projectData(project);
               }}
             >
               {project}
-              <span className={styles.delete} onClick={toggleModal}>
+              <span className='sidebar__delete' onClick={toggleModal}>
                 <IconContext.Provider
-                  value={{ color: "#f9f9f9", className: styles.d }}
-                >
+                  value={{ color: "#f9f9f9", className: 'trashcan' }}
+                > 
                   <div>
                     <BsTrash />
                   </div>

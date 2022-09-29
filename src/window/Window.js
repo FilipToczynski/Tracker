@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { IconContext } from "react-icons";
-import { GrFormAdd } from "react-icons/gr";
+import { BiListPlus } from "react-icons/bi";
 import { AiFillCaretRight } from "react-icons/ai";
+import { AiOutlineLineChart } from "react-icons/ai";
 import { BsFillStopFill } from "react-icons/bs";
-import styles from "./window.module.css";
+import { BsClock } from "react-icons/bs";
+import { BsCalendarEvent } from "react-icons/bs";
+import { FaThList } from "react-icons/fa";
+import { BsStopwatch } from "react-icons/bs";
+import { AiOutlineNumber } from "react-icons/ai";
+import "./window.scss";
 
 function Window({ name, date, time, tasks, timeSpent, setListOfTasks }) {
   const tasksArray = [];
@@ -39,10 +45,7 @@ function Window({ name, date, time, tasks, timeSpent, setListOfTasks }) {
       "-" +
       dateToday.getDate();
     let timeToday = new Date();
-    let timeTask =
-      timeToday.getHours() +
-      ":" +
-      timeToday.getMinutes();
+    let timeTask = timeToday.getHours() + ":" + timeToday.getMinutes();
     let x = {
       projectName: name,
       taskName: taskName,
@@ -70,105 +73,149 @@ function Window({ name, date, time, tasks, timeSpent, setListOfTasks }) {
   };
 
   let dateToday = new Date();
-    let dateTask =
-      dateToday.getFullYear() +
-      "-" +
-      (dateToday.getMonth() + 1) +
-      "-" +
-      dateToday.getDate();
-    let timeToday = new Date();
-    let timeTask =
-      timeToday.getHours() +
-      " : " +
-      timeToday.getMinutes();
+  let dateTask =
+    dateToday.getFullYear() +
+    "-" +
+    (dateToday.getMonth() + 1) +
+    "-" +
+    dateToday.getDate();
+  let timeToday = new Date();
+  let timeTask = timeToday.getHours() + " : " + timeToday.getMinutes();
   return (
-    <div className={styles.main}>
-      <div className={styles.data}>
-        <div className={styles.row}>
-          <div className={styles.splitRow}>
-            <div className={styles.inData}>
-              <h4>Created</h4>
-              <p>{date}</p>
+    <div className="window">
+      <div className="window__data">
+        <div className="window__insight">
+          <IconContext.Provider value={{ color: "#fff", size: "2rem" }}>
+            <div>
+              <AiOutlineLineChart />
             </div>
-            <div className={styles.inData}>
-              <h4>on</h4>
-              <p>{time}</p>
-            </div>
-          </div>
-          <div className={styles.splitRow}>
-            <div className={styles.inData}>
-              <h4>tasks</h4>
-              <p>#{tasks}</p>
-            </div>
-            <div className={styles.inData}>
-              <h4>time total</h4>
-              <p>{timeSpent}</p>
-            </div>
+          </IconContext.Provider>
+        </div>
+        <div>
+          <div className="window__row">
+            <span className="window__splitRow">
+              <div className="window__inData">
+                <h4>
+                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
+                    <div>
+                      <BsCalendarEvent />
+                    </div>
+                  </IconContext.Provider>
+                </h4>
+                <p>{date}</p>
+              </div>
+              <div className="window__inData">
+                <h4>
+                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
+                    <div>
+                      <BsClock />
+                    </div>
+                  </IconContext.Provider>
+                </h4>
+                <p>{time}</p>
+              </div>
+            </span>
+            <span className="window__splitRow">
+              <div className="window__inData">
+                <h4>
+                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
+                    <div>
+                      <AiOutlineNumber />
+                    </div>
+                  </IconContext.Provider>
+                </h4>
+                <p>{tasks}</p>
+              </div>
+              <div className="window__inData">
+                <h4>
+                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
+                    <div>
+                      <BsStopwatch />
+                    </div>
+                  </IconContext.Provider>
+                </h4>
+                <p>{timeSpent}</p>
+              </div>
+            </span>
           </div>
         </div>
       </div>
-      <div className={styles.add}>
-        <h2 className={styles.heading}>Add new task</h2>
-        <div className={styles.panel}>
+      <div className="window__add">
+        <h2 className="window__heading">Add new Task</h2>
+        <div className="window__panel">
           <input placeholder="task name" ref={inputRef}></input>
           <div>{name}</div>
           <div>{timeTask}</div>
           <div>{dateTask}</div>
           <div>0</div>
-          <button className={styles.button} onClick={addTask}>
+          <button className="window__btn" onClick={addTask}>
             <IconContext.Provider value={{ color: "#fff", size: "2rem" }}>
               <div>
-                <GrFormAdd />
+                <BiListPlus />
               </div>
             </IconContext.Provider>
           </button>
         </div>
       </div>
-      <div className={styles.list}>
-        <div className={styles.top}>
-          <h2 className={styles.heading}>list of task</h2>
-        </div>
-        <ul className={styles.bottom}>
-          {taskList && taskList.map((task, index) => {
-            let pjName = task.projectName;
-            let nameOfTask = task.taskName;
-            let timeTask = task.time;
-            let dateTask = task.date;
-            let taskTimer = task.timer;
-            return (
-              <li className={styles.item} key={index}>
-                <span>{nameOfTask}</span>
-                <span>{pjName}</span>
-                <span>{timeTask}</span>
-                <span>{dateTask}</span>
-                <span>{timer}</span>
-                <span>
-
-                <button className={styles.button}>
-                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
-                    <div>
-                      <AiFillCaretRight />
-                    </div>
-                  </IconContext.Provider>
-                </button>
-                <button className={styles.button}>
-                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
-                    <div>
-                      <BsFillStopFill />
-                    </div>
-                  </IconContext.Provider>
-                </button>
-                <button className={styles.button}>
-                  <IconContext.Provider value={{ color: "#fff", size: "1rem" }}>
-                    <div>
-                      <BsFillStopFill />
-                    </div>
-                  </IconContext.Provider>
-                </button>
-                </span>
-              </li>
-            );
-          })}
+      <div className="window__list">
+        <span className="window__centerTask">
+          <div className="window__taskPanel">
+            <IconContext.Provider value={{ color: "#fff", size: "1.2rem" }}>
+              <div>
+                <FaThList />
+              </div>
+            </IconContext.Provider>
+            <h2>list of task</h2>
+            <button>clear</button>
+          </div>
+        </span>
+        <ul className="window__tasks">
+          {taskList &&
+            taskList.map((task, index) => {
+              let pjName = task.projectName;
+              let nameOfTask = task.taskName;
+              let timeTask = task.time;
+              let dateTask = task.date;
+              let taskTimer = task.timer;
+              return (
+                <li className="window__item" key={index}>
+                  <span>{nameOfTask}</span>
+                  <span>{pjName}</span>
+                  <span>{timeTask}</span>
+                  <span>{dateTask}</span>
+                  <span>{timer}</span>
+                  <span>
+                    <button className="window__btn">
+                      <IconContext.Provider
+                        value={{ color: "#fff", size: "1rem" }}
+                      >
+                        <div>
+                          <AiFillCaretRight />
+                        </div>
+                      </IconContext.Provider>
+                    </button>
+                    <button className="window__btn">
+                      <IconContext.Provider
+                        value={{ color: "#fff", size: "1rem" }}
+                      >
+                        <div>
+                          <BsFillStopFill />
+                        </div>
+                      </IconContext.Provider>
+                    </button>
+                    <button className="window__btn">
+                      <IconContext.Provider
+                        value={{ color: "#fff", size: "1rem" }}
+                      >
+                        <div>
+                          <BsFillStopFill />
+                        </div>
+                      </IconContext.Provider>
+                    </button>
+                  </span>
+                </li>
+              );
+            })}
         </ul>
       </div>
     </div>

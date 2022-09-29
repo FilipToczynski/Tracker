@@ -1,0 +1,130 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  &__insight {
+    display: block;
+    width: 100%;
+  }
+  &__data {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 30%;
+    width: 40%;
+    border-radius: 3px;
+    background-color: var(--grey);
+    margin-top: 2rem;
+  }
+&__data * {
+  padding: .5rem;
+}
+  .window__data {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    grid-auto-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 4rem;
+    border-radius: 3px;
+  }
+  &__splitRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__splitRow * {
+    padding: 0.2rem;
+  }
+  &__inData {
+    display: flex;
+  }
+  &__add {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__list {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 3rem;
+    background-color: var(--grey);
+    box-shadow: -0.1rem 0 var(--blue);
+    border-radius: 6px;
+  }
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", "Lato", sans-serif;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+
+  &__centerTask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__taskPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    font-family: "Montserrat", "Lato", sans-serif;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+  input {
+    outline: none;
+  }
+
+  &__btn {
+    border-radius: 6px;
+    height: 100%;
+    width: 2.5rem;
+    background-color: var(--grey);
+    border: none;
+    border-left: 1px solid black;
+  }
+  &__item {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 3rem;
+    background-color: var(--grey);
+    box-shadow: -0.1rem 0 var(--blue);
+    border-radius: 6px;
+    margin-bottom: 0.2rem;
+  }
+
+  &__tasks {
+    overflow-y: auto;
+    height: 12.3rem;
+  }
+}

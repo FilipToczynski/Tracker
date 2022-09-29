@@ -1,0 +1,118 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 80vh;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--grey);
+    height: 2rem;
+    width: 12rem;
+    border-radius: 3px;
+    box-shadow: -0.1rem 0 var(--light-blue);
+    font-family: "Montserrat", "Lato", sans-serif;
+    font-style: italic;
+    padding: 0.2rem;
+  }
+  &__input {
+    outline: none;
+    background-color: var(--white);
+    border: none;
+    border-radius: 3px;
+  }
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", "Lato", sans-serif;
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    background-color: var(--white);
+    cursor: pointer;
+    margin-top: 0.5rem;
+    border: none;
+    border-radius: 3px;
+  }
+
+  &__module {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 4.5rem;
+    border-radius: 3px;
+    box-shadow: -0.1rem 0 var(--purple);
+    background-color: var(--grey);
+    width: 12rem;
+
+    ::placeholder {
+        padding: 0.4rem;
+      }
+  }
+
+  &__modal {
+    height: 4rem;
+    width: 100%;
+    background-color: var(--grey);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  &__list {
+    list-style: none;
+    overflow-y: auto;
+    width: 18rem;
+    height: 10rem;
+  }
+
+  &__item {
+    background-color: var(--grey);
+    width: 12rem;
+    padding: 0.2rem 0.3rem;
+    margin-top: 0.1rem;
+    margin-left: 3rem;
+    border-radius: 3px;
+    box-shadow: -0.1rem 0 var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__trashcan {
+    padding-left: 0.5rem;
+  }
+  &__item:hover {
+    box-shadow: -0.2rem 0 var(--blue);
+    transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    cursor: pointer;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(149, 149, 149);
+  border-radius: 20px;  
+}

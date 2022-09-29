@@ -1,6 +1,6 @@
 import Sidebar from "./Sidebar/Sidebar";
 import Window from "./window/Window";
-import styles from "./app.module.css";
+import "./app.scss";
 import { useState } from "react";
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
   const [tasks, setTasks] = useState('');
   const [listOfTasks, setListOfTasks] = useState('');
   return (
-    <div className={styles.view}>
-      <div className={styles.container}>
+    <div className='view'>
+      <div className='container'>
         <Sidebar setName={setName} setDate={setDate} setTime={setTime} setTasks={setTasks} setTimeSpent={setTimeSpent} listOfTasks={listOfTasks}/>
         <Window name={name} date={date} time={time} tasks={tasks} timeSpent={timeSpent} setListOfTasks={setListOfTasks}/>
       </div>
