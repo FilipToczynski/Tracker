@@ -4,15 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { GrFormAdd } from "react-icons/gr";
 import { BsTrash } from "react-icons/bs";
 
-function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTasks }) {
+function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
   const projectArray = ["example"];
-  const initName = 'project'
+  const initName = 'project';
   const [projectsList, setProjectsList] = useState(projectArray);
 
   const inputRef = useRef(null);
   const [input, setInput] = useState("");
   const [modal, setModal] = useState(false);
-  const [task, setTask] = useState('');
+  // const [task, setTask] = useState({});
   const [projectDate, setProjectDate] = useState("");
   const [projectTime, setProjectTime] = useState("");
   const [projectName, setProjectName] = useState(initName);
@@ -38,7 +38,6 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
     if (projectExists) {
       window.alert("project already exists");
     } else {
-      console.log(listOfTasks);
       setProjectsList([...projectsList, inputRef.current.value]);
       localStorage.setItem(
         "allProjects",
@@ -51,7 +50,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
           name: name,
           dateProject: dateProject,
           timeProject: timeProject,
-          taskList: task,
+          taskList: [{taskName: 'example'}],
         })
       );
     }
@@ -64,10 +63,10 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
   //     name: 'project',
   //     dateProject: 'date',
   //     timeProject: 'time',
-  //     taskList: [],
+  //     taskList: [{taskName: 'example'}],
   //   }));
   // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('undefined', JSON.stringify({}));
+  // localStorage.removeItem('bear', JSON.stringify({}));
   // localStorage.removeItem('3', JSON.stringify({}));
 
   const pullProjectsList = () => {
@@ -77,7 +76,6 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
   };
 
   useEffect(() => {
-    setTask(listOfTasks);
     pullProjectsList();
     setName(projectName);
     setDate(projectDate);
@@ -90,7 +88,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, listOfTask
     projectTime,
     setDate,
     setTime,
-    listOfTasks,
+    
   ]);
 
   const toggleModal = () => {

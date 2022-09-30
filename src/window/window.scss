@@ -11,26 +11,22 @@
     width: 100%;
   }
   &__data {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-around;
+    grid-template-columns: 0.5fr 1.5fr;
+    grid-auto-rows: 1fr;
+    grid-auto-flow: row;
     height: 30%;
     width: 40%;
     border-radius: 3px;
     background-color: var(--grey);
     margin-top: 2rem;
+    box-shadow: -0.1rem 0 var(--light-blue);
   }
 &__data * {
   padding: .5rem;
 }
-  .window__data {
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr;
-    grid-auto-rows: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-  }
-
+ 
   &__row {
     display: flex;
     align-items: center;
@@ -70,7 +66,7 @@
     width: 80%;
     height: 3rem;
     background-color: var(--grey);
-    box-shadow: -0.1rem 0 var(--blue);
+    box-shadow: -0.1rem 0 var(--purple);
     border-radius: 6px;
   }
   &__heading {
