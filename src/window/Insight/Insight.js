@@ -5,7 +5,6 @@ import {
   AiOutlineNumber,
 } from "react-icons/ai";
 import { BsCalendarEvent, BsClock } from "react-icons/bs";
-import "./insight.scss";
 
 function Insight({ date, time, numOfTask, taskDone }) {
   return (
