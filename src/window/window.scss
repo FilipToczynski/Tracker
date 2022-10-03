@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 35rem;
   width: 100%;
 
   &__insight {
@@ -11,22 +11,20 @@
     width: 100%;
   }
   &__data {
-    display: grid;
+    display: flex;
     align-items: center;
-    grid-template-columns: 0.5fr 1.5fr;
-    grid-auto-rows: 1fr;
-    grid-auto-flow: row;
-    height: 30%;
-    width: 40%;
+    justify-content: space-around;
+    height: 3rem;
+    width: 80%;
     border-radius: 3px;
     background-color: var(--grey);
-    margin-top: 2rem;
+    margin-top: 2.3rem;
     box-shadow: -0.1rem 0 var(--light-blue);
   }
-&__data * {
-  padding: .5rem;
-}
- 
+  &__data * {
+    padding: 0.2rem;
+  }
+
   &__row {
     display: flex;
     align-items: center;
@@ -34,17 +32,11 @@
     height: 4rem;
     border-radius: 3px;
   }
-  &__splitRow {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  &__splitRow * {
-    padding: 0.2rem;
-  }
+
   &__inData {
     display: flex;
   }
+
   &__add {
     height: 100%;
     width: 100%;
@@ -68,6 +60,13 @@
     background-color: var(--grey);
     box-shadow: -0.1rem 0 var(--purple);
     border-radius: 6px;
+    input {
+      margin-left: 0.3rem;
+      border-radius: 3px;
+      outline: none;
+      border: none;
+      background-color: var(--white);
+    }
   }
   &__heading {
     display: flex;
@@ -93,6 +92,12 @@
     font-family: "Montserrat", "Lato", sans-serif;
     font-style: italic;
     margin-bottom: 0.4rem;
+
+    button {
+      background-color: var(--white);
+      border: none;
+      cursor: pointer;
+    }
   }
   input {
     outline: none;
@@ -105,7 +110,9 @@
     background-color: var(--grey);
     border: none;
     border-left: 1px solid black;
+    cursor: pointer;
   }
+  
   &__item {
     display: flex;
     margin: auto;
@@ -117,6 +124,10 @@
     box-shadow: -0.1rem 0 var(--blue);
     border-radius: 6px;
     margin-bottom: 0.2rem;
+  }
+
+  &__item * {
+    padding: 0 0.4rem;
   }
 
   &__tasks {

@@ -4,19 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import { GrFormAdd } from "react-icons/gr";
 import { BsTrash } from "react-icons/bs";
 
-function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
+function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow }) {
   const projectArray = ["example"];
   const initName = 'project';
   const [projectsList, setProjectsList] = useState(projectArray);
-
   const inputRef = useRef(null);
   const [input, setInput] = useState("");
   const [modal, setModal] = useState(false);
-  // const [task, setTask] = useState({});
   const [projectDate, setProjectDate] = useState("");
   const [projectTime, setProjectTime] = useState("");
   const [projectName, setProjectName] = useState(initName);
-
   
 
   function addProject() {
@@ -50,10 +47,11 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
           name: name,
           dateProject: dateProject,
           timeProject: timeProject,
-          taskList: [{taskName: 'example'}],
+          taskList: [{taskName: 'task', projectName: 'project', time: 'time', date: 'date' }],
         })
       );
     }
+    setWindow(false);
   }
 
   //  to reset the list
@@ -66,7 +64,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
   //     taskList: [{taskName: 'example'}],
   //   }));
   // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('bear', JSON.stringify({}));
+  // localStorage.removeItem('b', JSON.stringify({}));
   // localStorage.removeItem('3', JSON.stringify({}));
 
   const pullProjectsList = () => {
@@ -88,7 +86,6 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
     projectTime,
     setDate,
     setTime,
-    
   ]);
 
   const toggleModal = () => {
@@ -119,9 +116,9 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent }) {
     setTime(pjTime);
     setTasks(pjTasks);
     setTimeSpent(pjTimeSpent);
+    setWindow(true);
   };
 
-  console.log(projectName);
   return (
     <div className='sidebar'>
       <h2 className='sidebar__title'>{projectName}</h2>
