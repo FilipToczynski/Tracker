@@ -1,5 +1,5 @@
 import Sidebar from "./Sidebar/Sidebar";
-import Window from "./window/Window";
+import Window from "./Window/Window";
 import "./app.scss";
 import { useState } from "react";
 
