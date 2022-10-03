@@ -1,8 +1,8 @@
-import { IconContext } from "react-icons";
 import "./sidebar.scss";
 import { useEffect, useRef, useState } from "react";
-import { GrFormAdd } from "react-icons/gr";
-import { BsTrash } from "react-icons/bs";
+import AddProject from "./AddProject/AddProject";
+import Modal from "./Modal/Modal";
+import ProjectsList from "./ProjectsList/ProjectsList";
 
 function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow }) {
   const projectArray = ["example"];
@@ -64,7 +64,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
   //     taskList: [{taskName: 'example'}],
   //   }));
   // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('b', JSON.stringify({}));
+  // localStorage.removeItem('e', JSON.stringify({}));
   // localStorage.removeItem('3', JSON.stringify({}));
 
   const pullProjectsList = () => {
@@ -122,62 +122,12 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
   return (
     <div className='sidebar'>
       <h2 className='sidebar__title'>{projectName}</h2>
-      <div>
-        <h2 className='sidebar__heading'>Add project</h2>
-        <div className='sidebar__module'>
-          <input
-            placeholder="project name"
-            className='sidebar__input'
-            ref={inputRef}
-            onChange={setInput}
-            required
-          ></input>
-          <button
-            className='sidebar__btn'
-            onClick={addProject}
-            disabled={input.length === 0 ? true : false}
-          >
-            Add
-            <IconContext.Provider value={{ color: "blue" }}>
-              <div>
-                <GrFormAdd />
-              </div>
-            </IconContext.Provider>
-          </button>
-        </div>
-      </div>
+      <AddProject inputRef={inputRef} setInput={setInput} addProject={addProject} input={input} />
       <div>
         <h2 className='sidebar__heading'>Projects list</h2>
-        {modal && (
-          <div className='sidebar__modal'>
-            delete project?
-            <div>
-              <button onClick={deleteProject}>yes</button>
-              <button onClick={toggleModal}>no</button>
-            </div>
-          </div>
-        )}
+        {modal && <Modal deleteProject={deleteProject} toggleModal={toggleModal} />}
         <ul className='sidebar__list'>
-          {projectsList.map((project, index) => (
-            <li
-              key={index}
-              className='sidebar__item'
-              onClick={() => {
-                projectData(project);
-              }}
-            >
-              {project}
-              <span className='sidebar__delete' onClick={toggleModal}>
-                <IconContext.Provider
-                  value={{ color: "#f9f9f9", className: 'trashcan' }}
-                > 
-                  <div>
-                    <BsTrash />
-                  </div>
-                </IconContext.Provider>
-              </span>
-            </li>
-          ))}
+         <ProjectsList projectsList={projectsList} toggleModal={toggleModal} projectData={projectData} />
         </ul>
       </div>
     </div>

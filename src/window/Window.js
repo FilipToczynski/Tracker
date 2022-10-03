@@ -86,9 +86,7 @@ function Window({ name, date, time, seeWindow }) {
       })
     );
   };
-
-
-
+  
   return (
     <div className="window">
      {seeTaskWindow && <div className="window__data">
