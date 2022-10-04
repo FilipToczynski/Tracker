@@ -14,7 +14,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
   const [projectDate, setProjectDate] = useState("");
   const [projectTime, setProjectTime] = useState("");
   const [projectName, setProjectName] = useState(initName);
-  
+  localStorage.setItem('allProjects', JSON.stringify(projectsList));
 
   function addProject() {
     const projectExists = projectsList.includes(inputRef.current.value);
@@ -56,7 +56,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
 
   //  to reset the list
   // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('read', JSON.stringify({}));
+  // localStorage.removeItem('aefgee', JSON.stringify({}));
   // localStorage.removeItem('3', JSON.stringify({}));
 
   const pullProjectsList = () => {
