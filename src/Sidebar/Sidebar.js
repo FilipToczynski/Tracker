@@ -5,7 +5,7 @@ import Modal from "./Modal/Modal";
 import ProjectsList from "./ProjectsList/ProjectsList";
 
 function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow }) {
-  const projectArray = ["example"];
+  const projectArray = [];
   const initName = 'project';
   const [projectsList, setProjectsList] = useState(projectArray);
   const inputRef = useRef(null);
@@ -14,8 +14,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
   const [projectDate, setProjectDate] = useState("");
   const [projectTime, setProjectTime] = useState("");
   const [projectName, setProjectName] = useState(initName);
-  localStorage.setItem('allProjects', JSON.stringify(projectsList));
-
+ 
   function addProject() {
     const projectExists = projectsList.includes(inputRef.current.value);
     let name = inputRef.current.value;
@@ -36,6 +35,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
       window.alert("project already exists");
     } else {
       setProjectsList([...projectsList, inputRef.current.value]);
+      projectArray.push([...projectsList, inputRef.current.value]);
       localStorage.setItem(
         "allProjects",
         JSON.stringify([...projectsList, inputRef.current.value])
@@ -53,20 +53,31 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
     }
     setWindow(false);
   }
-
+ 
   //  to reset the list
-  // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('aefgee', JSON.stringify({}));
-  // localStorage.removeItem('3', JSON.stringify({}));
+  // localStorage.removeItem('allProjects', JSON.stringify({}));  
+  // localStorage.removeItem('adde', JSON.stringify({}));
 
   const pullProjectsList = () => {
-    const updatedList = JSON.parse(localStorage.getItem("allProjects"));
-
+    let updatedList = JSON.parse(localStorage.getItem("allProjects"));
     setProjectsList([...updatedList]);
   };
 
+  const initial = () => {
+    localStorage.setItem('allProjects', JSON.stringify([]));  
+  }
   useEffect(() => {
-    pullProjectsList();
+    let updatedList = JSON.parse(localStorage.getItem("allProjects"));
+    console.log(updatedList);
+    if (updatedList === null) {
+      initial();  
+      return;
+    }
+
+  }, []);
+
+  useEffect(() => {
+      pullProjectsList();    
     setName(projectName);
     setDate(projectDate);
     setTime(projectTime);
