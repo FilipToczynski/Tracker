@@ -55,16 +55,8 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
   }
 
   //  to reset the list
-  // localStorage.setItem(
-  //   'project',
-  //   JSON.stringify({
-  //     name: 'project',
-  //     dateProject: 'date',
-  //     timeProject: 'time',
-  //     taskList: [{taskName: 'example'}],
-  //   }));
   // localStorage.setItem('allProjects', JSON.stringify(projectsList));
-  // localStorage.removeItem('e', JSON.stringify({}));
+  // localStorage.removeItem('read', JSON.stringify({}));
   // localStorage.removeItem('3', JSON.stringify({}));
 
   const pullProjectsList = () => {
@@ -126,7 +118,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
       <div>
         <h2 className='sidebar__heading'>Projects list</h2>
         {modal && <Modal deleteProject={deleteProject} toggleModal={toggleModal} />}
-        <ul className='sidebar__list'>
+        <ul className='sidebar__list'>  
          <ProjectsList projectsList={projectsList} toggleModal={toggleModal} projectData={projectData} />
         </ul>
       </div>

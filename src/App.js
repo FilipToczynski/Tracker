@@ -12,12 +12,10 @@ function App() {
   const [tasks, setTasks] = useState('');
   const [seeWindow, setWindow] = useState(false);
   return (
-    <div className='view'>
       <div className='container'>
         <Sidebar setName={setName} setDate={setDate} setTime={setTime} setTasks={setTasks} setTimeSpent={setTimeSpent} setWindow={setWindow}/>
         <Window name={name} date={date} time={time} tasks={tasks} timeSpent={timeSpent} seeWindow={seeWindow} />
       </div>
-    </div>
   );
 }
 

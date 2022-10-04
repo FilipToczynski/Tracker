@@ -87,7 +87,7 @@
     width: 18rem;
     height: 10rem;
   }
-
+ 
   &__item {
     background-color: var(--grey);
     width: 12rem;
@@ -123,4 +123,31 @@
 ::-webkit-scrollbar-thumb {
   background: rgb(149, 149, 149);
   border-radius: 20px;  
+}
+
+@media only screen and (max-width: 1000px) {
+  .sidebar {
+    width: 14rem;
+  }
+  
+}
+
+@media only screen and (max-width: 700px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20rem;
+    margin-top: 22rem;
+    h2 {
+      margin-top: 0.5rem;
+    }
+  }
+  .sidebar__title {
+    display: none;
+  }
+  .sidebar__center {
+    height: 100%;
+  }
 }

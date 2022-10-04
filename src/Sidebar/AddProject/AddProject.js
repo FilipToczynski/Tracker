@@ -3,7 +3,7 @@ import { GrFormAdd } from "react-icons/gr";
 
 function AddProject({inputRef, setInput, addProject, input}) {
   return (
-    <div>
+    <div className="sidebar__center">
       <h2 className="sidebar__heading">Add project</h2>
       <div className="sidebar__addProject">
         <input
