@@ -56,7 +56,7 @@ function Sidebar({ setName, setDate, setTime, setTasks, setTimeSpent, setWindow 
  
   //  to reset the list
   // localStorage.removeItem('allProjects', JSON.stringify({}));  
-  // localStorage.removeItem('adde', JSON.stringify({}));
+  // localStorage.removeItem('add', JSON.stringify({}));
 
   const pullProjectsList = () => {
     let updatedList = JSON.parse(localStorage.getItem("allProjects"));

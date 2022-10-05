@@ -9,6 +9,7 @@ import { BsCalendarEvent, BsClock } from "react-icons/bs";
 function Insight({ date, time, numOfTask, taskDone }) {
   return (
     <>
+  
       <IconContext.Provider value={{ color: "#fff", size: "2rem" }}>
         <div>
           <AiOutlineBarChart />
@@ -59,6 +60,7 @@ function Insight({ date, time, numOfTask, taskDone }) {
         </div>
       </div>
     </>
+
   );
 }
 
